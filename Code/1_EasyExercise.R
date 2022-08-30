@@ -14,6 +14,10 @@ library(dplyr)
 ger = gb_adm0('Germany', type = "SSCGS")
 plot(ger)
 
+col = gb_adm0('Colombia', type = "SSCGS")
+plot(col)
+
+
 #--E2. Read the median (P50) global snow cover monthly values for December 2019 ----
 #from  https://zenodo.org/record/6011200/
 P50_2019_url = "/vsicurl/https://zenodo.org/record/6011200/files/clm_snow.cover_esa.modis_p50_1km_s0..0cm_2019.12_epsg4326_v1.tif?download=1"
@@ -87,7 +91,7 @@ y2019rastsck = kmeans(sf::st_drop_geometry(y2019rastsc[4]), centers = 6)
 y2019rastsc$k = y2019rastsck$cluster
 
 tm_shape(snow_germ_f_pro) +
-  tm_raster(style = "cont", palette = "-RdYlGn") +
+  tm_raster(style = "cont", palette = "viridis") +
   tm_shape(y2019rastsc) +
   tm_polygons(col = "k", style = "cat")
 
